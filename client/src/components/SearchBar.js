@@ -26,5 +26,5 @@ export default function form(props) {
 const style = {
   margin: "20px",
   padding: " 20px",
-  border: " 1px solid black"
+  border: " 2px solid black"
 };

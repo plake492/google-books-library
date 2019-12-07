@@ -1,0 +1,25 @@
+.bookInfo {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.bookInfo-img {
+  max-width: 200px;
+}
+
+.bookInfo-block {
+  display: flex;
+  flex-flow: row;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.bookInfo-block > img {
+  margin-right: 10px;
+}
+
+.bookInfo-block > h4 {
+  padding: 20px;
+  text-align: left;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../utils/API";
-import "./search.css";
+import "./bookPages.css";
 import Form from "../components/SearchBar";
 
 class Search extends React.Component {
@@ -42,6 +42,12 @@ class Search extends React.Component {
     });
   };
 
+  addToFavorites = bookData => {
+    API.saveBook(bookData).then(data => {
+      alert("you fucking did it");
+    });
+  };
+
   render() {
     return (
       <div>
@@ -60,28 +66,59 @@ class Search extends React.Component {
             ) : (
               x.volumeInfo.authors.map((x, i) => <h3 key={i}>{x}</h3>)
             )}
-            <img
-              className="bookInfo-img"
-              src={
-                x.volumeInfo.imageLinks === undefined
-                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lke3azgBL-EoPLiEEy3uyuWaN8zFR5X7cJDtTPNC2e1vvsSG&s"
-                  : x.volumeInfo.imageLinks.thumbnail
-              }
-              alt="bookImg"
-            ></img>
-            <h4>{x.volumeInfo.description}</h4>
+            <div className="bookInfo-block">
+              <img
+                className="bookInfo-img"
+                src={
+                  x.volumeInfo.imageLinks === undefined
+                    ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1lke3azgBL-EoPLiEEy3uyuWaN8zFR5X7cJDtTPNC2e1vvsSG&s"
+                    : x.volumeInfo.imageLinks.thumbnail
+                }
+                alt="bookImg"
+              ></img>
+              <h4>{x.volumeInfo.description}</h4>
+            </div>
             <div>
               {x.saleInfo.buyLink ? (
                 <React.Fragment>
                   <button>
                     <a href={x.saleInfo.buyLink}> Buy Here</a>
                   </button>
-                  <button style={{ marginLeft: "10px" }} button>
+                  <button
+                    onClick={() =>
+                      this.addToFavorites({
+                        title: x.volumeInfo.title,
+                        link: x.saleInfo.buyLink,
+                        description: x.volumeInfo.description,
+                        authors: [...x.volumeInfo.authors],
+                        image:
+                          x.volumeInfo.imageLinks.thumbnail === undefined
+                            ? "No Image"
+                            : x.volumeInfo.imageLinks.thumbnail
+                      })
+                    }
+                    style={{ marginLeft: "10px" }}
+                    button
+                  >
                     Add to Favorites
                   </button>
                 </React.Fragment>
               ) : (
-                <button onClick={this.addToFavorites}>Add to Favorites</button>
+                <button
+                  onClick={() =>
+                    this.addToFavorites({
+                      title: x.volumeInfo.title,
+                      description: x.volumeInfo.description,
+                      authors: [...x.volumeInfo.authors],
+                      image:
+                        x.volumeInfo.imageLinks === undefined
+                          ? "No Image"
+                          : x.volumeInfo.imageLinks.thumbnail
+                    })
+                  }
+                >
+                  Add to Favorites
+                </button>
               )}
             </div>
           </div>
