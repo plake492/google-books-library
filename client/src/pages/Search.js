@@ -50,7 +50,10 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{ border: "2px solid black", margin: "20px", padding: "20px" }}
+      >
+        <h1 style={{ textAlign: "center" }}>Search for Books</h1>
         <Form
           value={this.state.search}
           handleInputChange={this.handleInputChange}

@@ -17,7 +17,14 @@ export default class Saved extends Component {
     });
   }
 
+  removeFromSaved(id, title) {
+    API.deleteBook(id, title).then(books => {
+      console.log(books);
+    });
+  }
+
   render() {
+    console.log(this.state.savedBooks);
     return (
       <div
         style={{ border: "2px solid black", margin: "20px", padding: "20px" }}
@@ -46,6 +53,12 @@ export default class Saved extends Component {
             </div>
             <button disabled={!x.link}>
               <a href={x.link}> Buy Here</a>
+            </button>
+            <button
+              style={{ marginLeft: "10px" }}
+              onClick={() => this.removeFromSaved(x._id, x.title)}
+            >
+              Remove From Saved
             </button>
           </div>
         ))}
