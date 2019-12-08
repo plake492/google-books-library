@@ -12,15 +12,19 @@ export default class Saved extends Component {
   }
 
   componentDidMount() {
-    API.getSavedBooks().then(books => {
-      this.setState({ savedBooks: books.data });
-    });
+    API.getSavedBooks()
+      .then(books => {
+        this.setState({ savedBooks: books.data });
+      })
+      .catch(err => console.log(err));
   }
 
   removeFromSaved(id, title) {
-    API.deleteBook(id, title).then(books => {
-      console.log(books);
-    });
+    API.deleteBook(id, title)
+      .then(books => {
+        console.log(books);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

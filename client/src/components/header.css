@@ -3,4 +3,26 @@
   min-height: 50px;
   padding: 20px;
   background-color: #aaa;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  position: relative;
+}
+.header-nav {
+  padding: 15px;
+}
+
+/* .header-nav > * {
+  flex: 1 33%;
+} */
+.header-title {
+  text-align: center;
+  /* order: 2; */
+}
+
+.header-nav__link {
+  text-align: center;
+  /* order: 1; */
+  padding: 10px;
 }

@@ -15,15 +15,15 @@ class Search extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.state.mostRecentSearch);
-    API.getGoogleBooks("the odyssey").then(data => {
-      this.setState({
-        booksFound: data.data.items
-      });
-      console.log(this.state.booksFound);
-    });
-  }
+  // componentDidMount() {
+  //   console.log(this.state.mostRecentSearch);
+  //   API.getGoogleBooks().then(data => {
+  //     this.setState({
+  //       booksFound: data.data.items
+  //     });
+  //     console.log(this.state.booksFound);
+  //   });
+  // }
 
   handleInputChange = event => {
     this.setState({
@@ -43,9 +43,9 @@ class Search extends React.Component {
   };
 
   addToFavorites = bookData => {
-    API.saveBook(bookData).then(data => {
-      alert("you fucking did it");
-    });
+    API.saveBook(bookData)
+      .then(data => {})
+      .catch(err => console.log(err));
   };
 
   render() {
